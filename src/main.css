@@ -1,0 +1,22 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  color: #2c2c2c;
+  font-family: Poppins, sans-serif;
+  background-color: #ffe66d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
