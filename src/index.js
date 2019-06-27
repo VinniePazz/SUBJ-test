@@ -24,6 +24,7 @@ const renderApp = () => {
 };
 
 axios.defaults.baseURL = "http://159.89.96.181/api/v1";
+axios.defaults.headers.common["Authorization"] = `Bearer odbvv5dlyw8j0qh31916ne0wyuwyuqiuwtrr`;
 
 axios.interceptors.request.use(
   function(config) {
@@ -47,16 +48,7 @@ axios.interceptors.response.use(
   }
 );
 
-const init = () => {
-  axios.post("/tokens", { userName: "test" }).then(function(response) {
-    const token = response.data.token;
-    console.log(token);
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    renderApp();
-  });
-};
-
-init();
+renderApp();
 
 if (process.env.NODE_ENV !== "production" && module.hot) {
   module.hot.accept(App, renderApp);
