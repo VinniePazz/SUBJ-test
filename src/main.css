@@ -1,13 +1,16 @@
 html,
 body {
-  height: 100%;
-  overflow: hidden;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 body {
   color: #2c2c2c;
   font-family: Poppins, sans-serif;
   background-color: #ffe66d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 * {
