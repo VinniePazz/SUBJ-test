@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import { closeModal } from "../actions/uiActions";
-import Form from "./Form";
 
 const Dimmer = styled.div`
   background: rgba(0, 0, 0, 0.8);
@@ -21,18 +20,14 @@ const Dimmer = styled.div`
 
 const Body = styled.div``;
 
-class Modal extends Component {
-  render() {
-    return ReactDOM.createPortal(
-      <Dimmer onClick={() => this.props.closeModal()}>
-      <Body onClick={e => e.stopPropagation()}>
-        {this.props.render()}
-      </Body>
-      </Dimmer>,
-      document.querySelector("#modal")
-    );
-  }
-}
+const Modal = ({ render, closeModal }) => {
+  return ReactDOM.createPortal(
+    <Dimmer onClick={() => closeModal()}>
+      <Body onClick={e => e.stopPropagation()}>{render()}</Body>
+    </Dimmer>,
+    document.querySelector("#modal")
+  );
+};
 
 export default connect(
   null,

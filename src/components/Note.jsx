@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import {
-  getNotes,
-  getNote,
-  createNote,
-  deleteNote
-} from "../actions/notesActions";
-import { openModal } from "../actions/uiActions";
+import { openModal, showNotification } from "../actions/uiActions";
 
 import DeleteIcon from "../icons/DeleteIcon";
 import EditIcon from "../icons/EditIcon";
@@ -52,7 +46,11 @@ class Note extends Component {
           <Title>{this.props.title}</Title>
           <ActionBar>
             <EditIcon onClick={() => this.props.openModal(this.props.id)} />
-            <DeleteIcon onClick={() => this.props.deleteNote(this.props.id)} />
+            <DeleteIcon
+              onClick={() =>
+                this.props.showNotification(this.props.id, "delete")
+              }
+            />
           </ActionBar>
         </Header>
         <Content>{this.props.content}</Content>
@@ -63,5 +61,5 @@ class Note extends Component {
 
 export default connect(
   null,
-  { getNotes, getNote, createNote, deleteNote, openModal }
+  { openModal, showNotification }
 )(Note);

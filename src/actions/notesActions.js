@@ -51,6 +51,7 @@ export const editNote = id => async (dispatch, getState) => {
     const response = await axios.patch(`/notes/${id}`, newValues);
     console.log(response);
     dispatch({ type: EDIT_NOTE, payload: response.data });
+    dispatch({ type: CLOSE_NOTIFICATION });
   } catch (error) {
     dispatch({ type: CLOSE_NOTIFICATION });
   }
@@ -64,7 +65,8 @@ export const deleteNote = id => async dispatch => {
       }
     });
     dispatch({ type: DELETE_NOTE, payload: id });
+    dispatch({ type: CLOSE_NOTIFICATION });
   } catch (error) {
-    console.log(error);
+    dispatch({ type: CLOSE_NOTIFICATION });
   }
 };
