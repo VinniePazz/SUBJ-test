@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import Confirm from "../hoc/Confirm";
+
 const SVG = styled.svg`
   /* fill: rgba(255, 255, 255, 0.3); */
   width: ${({ width }) => width || "20px"};
@@ -28,4 +30,4 @@ const DeleteIcon = props => {
   );
 };
 
-export default DeleteIcon;
+export default Confirm(DeleteIcon);

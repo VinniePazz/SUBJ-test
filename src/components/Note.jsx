@@ -27,7 +27,8 @@ const Title = styled.h3`
 
 const Content = styled.p`
   color: ${({ theme }) => theme.colors.dark};
-  font-style: italic;
+  /* font-style: italic; */
+  font-size: 14px;
   margin-top: 10px;
 `;
 
@@ -46,11 +47,7 @@ class Note extends Component {
           <Title>{this.props.title}</Title>
           <ActionBar>
             <EditIcon onClick={() => this.props.openModal(this.props.id)} />
-            <DeleteIcon
-              onClick={() =>
-                this.props.showNotification(this.props.id, "delete")
-              }
-            />
+            <DeleteIcon id={this.props.id} />
           </ActionBar>
         </Header>
         <Content>{this.props.content}</Content>

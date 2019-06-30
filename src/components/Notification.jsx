@@ -29,7 +29,7 @@ const Dimmer = styled.div`
 `;
 
 const SnackBar = styled.div`
-  padding: 1rem;
+  padding: 1rem 2rem;
   background: #ffffff;
   display: flex;
   justify-content: center;
@@ -60,6 +60,7 @@ const Text = styled.p`
   text-align: center;
   font-size: 18px;
   font-weight: 600;
+  text-transform: uppercase;
 `;
 
 const Body = styled.div`
@@ -70,9 +71,10 @@ const Body = styled.div`
 
 const RejectButton = styled.button`
   background: #ff6b6b;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   color: #f7fff7;
   margin-top: 10px;
+  text-transform: uppercase;
   cursor: pointer;
 
   &:hover {
@@ -96,7 +98,7 @@ class Notification extends Component {
       case "create":
         this.timer = setTimeout(() => {
           createNote();
-        }, 20000);
+        }, 2000);
         break;
       case "edit":
         this.timer = setTimeout(() => {
@@ -109,13 +111,26 @@ class Notification extends Component {
         }, 2000);
         break;
       default:
-        return null;
+        return;
     }
+
+    window.addEventListener("keydown", this.rejectTimerOnEScKey, true);
   }
 
-  rejectTimer = () => {
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.rejectTimerOnEScKey, true);
+  }
+
+  rejectTimer = e => {
     clearTimeout(this.timer);
     this.props.closeNotification();
+  };
+
+  rejectTimerOnEScKey = e => {
+    if (e.keyCode === 27) {
+      clearTimeout(this.timer);
+      this.props.closeNotification();
+    }
   };
 
   render() {
@@ -130,10 +145,10 @@ class Notification extends Component {
           <Body>
             <Text>
               {type === "create"
-                ? "Note is creating"
+                ? "creating"
                 : type === "edit"
-                ? "Note is editing"
-                : "Note is deleting"}
+                ? "editing"
+                : "deleting"}
               ...
             </Text>
             <RejectButton onClick={this.rejectTimer}>cancel</RejectButton>

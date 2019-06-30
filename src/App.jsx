@@ -6,7 +6,7 @@ import { getNotes } from "./actions/notesActions";
 import { openModal } from "./actions/uiActions";
 import Note from "./components/Note";
 import Modal from "./components/Modal";
-import Notification from "./components/Notifications";
+import Notification from "./components/Notification";
 import Form from "./components/Form";
 
 const Container = styled.div`
@@ -36,6 +36,11 @@ export const CreateNote = styled.button`
 
   &:active {
     transform: translateY(2%);
+  }
+
+  &:disabled {
+    background: #f5aaaa;
+    cursor: not-allowed;
   }
 `;
 

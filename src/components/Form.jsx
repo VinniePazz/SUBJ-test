@@ -20,12 +20,14 @@ class Form extends Component {
   state = {
     title: this.props.title,
     content: this.props.content,
-    error: false
+    error: false,
+    pristine: true
   };
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      pristine: false
     });
   };
 
@@ -69,7 +71,9 @@ class Form extends Component {
             maxLength={200}
           />
           {this.state.error && <label>Please, fill all fields</label>}
-          <CreateNote>add note</CreateNote>
+          <CreateNote disabled={this.state.pristine}>
+            {this.props.id ? "edit note" : "add note"}
+          </CreateNote>
         </StyledForm>
       </Wrapper>
     );

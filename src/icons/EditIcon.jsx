@@ -12,7 +12,7 @@ const SVG = styled.svg`
   }
 `;
 
-const DeleteIcon = props => {
+const EditIcon = props => {
   return (
     <SVG
       xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +30,4 @@ const DeleteIcon = props => {
   );
 };
 
-export default DeleteIcon;
+export default EditIcon;

@@ -49,7 +49,6 @@ export const editNote = id => async (dispatch, getState) => {
   console.log(id);
   try {
     const response = await axios.patch(`/notes/${id}`, newValues);
-    console.log(response);
     dispatch({ type: EDIT_NOTE, payload: response.data });
     dispatch({ type: CLOSE_NOTIFICATION });
   } catch (error) {
